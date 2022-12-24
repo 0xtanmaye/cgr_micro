@@ -6,8 +6,8 @@
 #include <dos.h>
 #include <time.h>
 
-#define d 40                //d=distance
-#define s 40                //s=size
+#define d 35                //d=distance
+#define s 30                //s=size
 #define f 200               //f=display coordinate factor
 #define mx getmaxx()
 #define my getmaxy()
@@ -47,19 +47,9 @@ void display(int sx,int sy)	//Display grid
 
 void end(char *str)		//Game end
 {
-    int i,j;
-    delay(800);
     cleardevice();
-    setcolor(WHITE);
+    setcolor(GREEN);
     outtextxy(mx/2-150,my/2,str);
-/*    for(i=0,j=0;i!=4){
-	    j=1;
-	setcolor(j);
-	sound(200*j);
-	circle(mx/2,my/2,i);
-	delay(100);
-    } */
-    nosound();
     outtextxy(mx/2-150,my/2,str);
     getch();
     closegraph();
@@ -76,7 +66,7 @@ int checkWin(int sx,int sy,int player)		//Check win; return 1 if any one of two 
 	{
 	    display(sx,sy);
 	    getch();
-	    sprintf(str, "Player %d (%c) You Won!!!", player+1, player?'O':'X');
+	    sprintf(str, "Player %d (%c) You Won!", player+1, player?'O':'X');
 	    end(str);
 	    return(1);
 	}
@@ -84,7 +74,7 @@ int checkWin(int sx,int sy,int player)		//Check win; return 1 if any one of two 
 	{
 	    display(sx,sy);
 	    getch();
-	    sprintf(str,"Player %d (%c) You Won!!!",player+1,player?'O':'X');
+	    sprintf(str,"Player %d (%c) You Won!",player+1,player?'O':'X');
 	    end(str);
 	    return(1);
 	}
@@ -104,7 +94,7 @@ int checkDraw(int sx,int sy)		//Check draw; return 1 if draw else 0
     {
 	display(sx,sy);
 	getch();
-	sprintf(str,"The game is draw!!!");
+	sprintf(str,"The game is draw!");
 	end(str);
 	return(1);
     }
@@ -123,7 +113,7 @@ void main()
 	for(j=0;j<3;j++)
 	    grid[i][j]=' ';
 
-    //settextstyle(DEFAULT_FONT,HORIZ_DIR,2);     //Initialize text style
+    settextstyle(DEFAULT_FONT,HORIZ_DIR,2);     //Initialize text style
 
     while(1)
     {
